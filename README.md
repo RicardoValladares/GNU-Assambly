@@ -1,3 +1,3 @@
-# GNU Assambly Floopy
+# GNU Assambly
 
 make
