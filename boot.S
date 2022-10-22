@@ -1,19 +1,19 @@
-.code16 # use 16 bits
+.code16                   # usar 16 bits
 .global init
 
 init:
-  mov $msg, %si # loads the address of msg into si
-  mov $0xe, %ah # loads 0xe (function number for int 0x10) into ah
+  mov $msg, %si           # cargar direccion de msg en si
+  mov $0xe, %ah           # cargar 0xe (funcion numerica para int 0x10) en ah
 print_char:
-  lodsb # loads the byte from the address in si into al and increments si
-  cmp $0, %al # compares content in AL with zero
-  je done # if al == 0, go to "done"
-  int $0x10 # prints the character in al to screen
-  jmp print_char # repeat with next byte
+  lodsb                   # cargar un byte a la vez en si 
+  cmp $0, %al             # copara contenido de AL con cero
+  je done                 # if al == 0, ir a "done"
+  int $0x10               # imprimir el caracter en la pantalla
+  jmp print_char          # repertir con el siguiente byte
 done:
-  hlt # stop execution
+  hlt                     # parar la ejecucion
 
 msg: .asciz ">Hola Mundo_"
 
-.fill 510-(.-init), 1, 0 # add zeroes to make it 510 bytes long
-.word 0xaa55 # magic bytes that tell BIOS that this is bootable
+.fill 510-(.-init), 1, 0  # agregar ceros hasta llegar a 510 bytes
+.word 0xaa55              # magicos bytes que le informa a la BIOS que esto es bootable
