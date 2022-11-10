@@ -6,7 +6,7 @@ init:
   mov $0xe, %ah           # cargar 0xe (funcion numerica para int 0x10) en ah
 print_char:
   lodsb                   # cargar un byte a la vez en si 
-  cmp $0, %al             # copara contenido de AL con cero
+  cmp $0, %al             # compara contenido de AL con cero
   je done                 # if al == 0, ir a "done"
   int $0x10               # imprimir el caracter en la pantalla
   jmp print_char          # repertir con el siguiente byte
